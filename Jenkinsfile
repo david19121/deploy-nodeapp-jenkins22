@@ -7,8 +7,8 @@ pipeline {
     stage("GitHub git cloning") {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/clement2019/Deploy-NodeAp-AWS-EKS-jenkins.git']])
-                    //git branch: 'main', url: 'https://github.com/clement2019/Deploy-NodeAp-AWS-EKS-jenkins.git' 
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/david19121/deploy-nodeapp-jenkins22.git']])
+                    //git branch: 'main', url: 'https://github.com/david19121/deploy-nodeapp-jenkins22.git' 
                 }
             }
         }
@@ -25,8 +25,8 @@ pipeline {
                  
                   sh 'printenv'
                   sh 'git version'
-                  //sh 'docker build -t good777lord/node-app:""$Build_ID"".'
-                  sh 'docker build -t good777lord/node-app1 .'
+                  //sh 'docker build -t david19121/node-app:""$Build_ID"".'
+                  sh 'docker build -t david19121/node-app1 .'
                 }
             }
         }
@@ -36,11 +36,11 @@ pipeline {
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerhub_ID', variable: 'dockerhub_ID')]) {
-                    sh 'docker login -u good777lord -p ${dockerhub_ID}'
+                    sh 'docker login -u david19121 -p ${dockerhub_ID}'
             }
-            //normally
-            //sh 'docker push good777lord/node-app:""$Build_ID""'
-            sh 'docker push good777lord/node-app1:latest'
+
+            //sh 'docker push david19121/node-app:""$Build_ID""'
+            sh 'docker push david19121/node-app1:latest'
         }
             }   
         }
@@ -49,3 +49,5 @@ pipeline {
 
   }
 }
+
+	
