@@ -4,7 +4,7 @@ pipeline {
    tools {nodejs "node"}
     
   stages {
-    stage("GitHub git cloning") {
+    stage("cloning git in GitHub") {
             steps {
                 script {
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/david19121/deploy-nodeapp-jenkins22.git']])
@@ -19,7 +19,7 @@ pipeline {
       }
     }
   
-     stage('Building Docker Image for the app') {
+     stage('Building Docker Image') {
             steps {
                 script {
                  
